@@ -292,8 +292,8 @@
         mouse.y = window.pageYOffset + evt.clientY;
     }
     else {
-        mouse.x = window.pageXOffset + evt.changedTouches[0].screenX;
-        mouse.y = window.pageYOffset + evt.changedTouches[0].screenY;
+        mouse.x = window.pageXOffset + evt.changedTouches[0].clientX;
+        mouse.y = window.pageYOffset + evt.changedTouches[0].clientY;
     }
       
   }
