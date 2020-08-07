@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <link rel="mask-icon" href="logo.png">
+     <link rel="alternate icon" class="js-site-favicon" type="image/png" href="logo.png">
+     <link rel="icon" class="js-site-favicon" type="image/png" href="logo.png">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+        :root {
+          --border-color: black;
+          --window-color: white;
+          --background-color: white;
+          --background-radius: 250;
+          --background-speed: 0.65;
+          --energy-decay: 0.3;
+        }
+        body {
+          width: 100%;
+          margin: 0 auto;
+          background-color: var(--background-color);
+        }
+        #container {
+          position: relative;
+          width: 100%;
+          margin: 0 auto;
+        }
+        #container canvas, #overlay {
+          width: 100%;
+          margin: 0 auto;
+          position: absolute;
+        }
+        canvas {
+          width: 70%;
+          background-color: var(--background-color);
+          overflow: hidden;
+        }
+        #main_window {
+          width: 70%;
+          min-width: 310px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .faded {
+          margin: 0 auto;
+          background: var(--window-color);
+          box-shadow: 0 0 5px 5px var(--window-color);
+          font-family: cursive;
+          font-family: "Gill Sans", sans-serif;
+          display: inline-block
+        }
+        .title {
+           font-size: 64px;
+           box-shadow: 0 0 5px 5px var(--window-color);
+           font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
+                        sans-serif,Apple Color Emoji,Segoe UI Emoji;
+        }
+        .scrollbar {
+          overflow-y: scroll;
+        }    
+    </style>
+
+<body>
+    <div id="container">
+        <canvas></canvas>
+        <div id="overlay">
+            <div id="main_window">
+                <div id="header" width="30%">
+                    <img src="logo.png"
+                         style="width: 50%; max-height: 320px; max-width: 320px;">
+                    <br>
+                    <h1 class="faded title" style="margin-top:-3%;">
+                        <p style="margin-top: 0px; margin-bottom:0px;">
+                            <sup style="font-size: 18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sup>
+                            hivemind<wbr> 
+                            <sup style="font-size: 18px">v0.8&nbsp;pre&#8209;alpha</sup>
+                        </p>
+                        <p style="font-size: 18px; margin-top:0px; margin-bottom:0px;">train vast neural networks together</p>
+                    </h1>
+                </div>
+                
+                <div class="faded" style="margin-top:35px;">
+                    We're building a library to train large neural networks across the internet. Think GPT-3 training hosted by thousand nodes from universities, companies, volunteers.
+                    <br><br>
+                    <div style="width:100%; margin: 0 auto;">
+                        widgets TODOgithub | TODOquickstart | TODOarxiv
+                    </div>
+                </div>
+                
+                <hr class="faded" style="width: 100%; margin-top:15px;">
+
+                <div class="faded" style="margin-top:35px;">
+                  Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </div>
+    <script>
+// draw background; Note: this background is based on https://codepen.io/pawelqcm/pen/oxPYox by Pawel
+// Note 2: Pawel, you're awesome.
+(function() {
+  content_element = document.getElementById("overlay");
+  var canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
+  css_opts = getComputedStyle(document.documentElement);
+  SENSITIVITY = css_opts.getPropertyValue('--background-sensitivity') || 120;
+  SIBLINGS_LIMIT = css_opts.getPropertyValue('--background-siblings') || 10;
+  DENSITY = css_opts.getPropertyValue('--background-density') || 70;
+  MOUSE_RADIUS = css_opts.getPropertyValue('--background-radius') || 250;
+  SPEED_COEF = css_opts.getPropertyValue('--background-speed') || 2;
+  ENERGY_DECAY = css_opts.getPropertyValue('--energy-decay') || 2;
+
+  choice = (choices => choices[Math.floor(Math.random() * choices.length)])
+  sample_color = () => choice([[40, 40, 40], [133, 133, 133]])
+
+  NODES_QTY = 0;
+  ANCHOR_LENGTH = 20;
+
+  circ = 2 * Math.PI;
+  nodes = [];
+
+  canvas = document.querySelector('canvas');
+
+  ctx = canvas.getContext('2d');
+  if (!ctx) {
+    alert("Your browser does not support canvas, content may be broken :'(");
+  }
+
+  resizeWindow();
+  mouse = {
+    x: canvas.width / 2,
+    y: canvas.height / 2
+  };
+
+  function Node(x, y) {
+    this.anchorX = x;
+    this.anchorY = y;
+    this.x = Math.random() * (x - (x - ANCHOR_LENGTH)) + (x - ANCHOR_LENGTH);
+    this.y = Math.random() * (y - (y - ANCHOR_LENGTH)) + (y - ANCHOR_LENGTH);
+    this.vx = Math.random() * 2 - 1;
+    this.vy = Math.random() * 2 - 1;
+    this.energy = Math.random() * 100;
+    this.radius = Math.random();
+    this.siblings = [];
+    [this.r, this.g, this.b] = sample_color()
+    this.brightness = 0;
+  }
+
+  Node.prototype.drawNode = function() {
+    var color = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.brightness})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
+
+  Node.prototype.drawConnections = function() {
+    for (var i = 0; i < this.siblings.length; i++) {
+      var color = `rgba(133, 133, 133, ${this.brightness})`;
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
+      ctx.lineWidth = 1 - calcDistance(this, this.siblings[i]) / SENSITIVITY;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    }
+  };
+
+
+  Node.prototype.moveNode = function() {
+    this.energy -= ENERGY_DECAY;
+    if (this.energy < 1) {
+      this.energy = Math.random() * 100;
+      if (this.x - this.anchorX < -ANCHOR_LENGTH) {
+        this.vx = Math.random() * SPEED_COEF;
+      } else if (this.x - this.anchorX > ANCHOR_LENGTH) {
+        this.vx = Math.random() * -SPEED_COEF;
+      } else {
+        this.vx = Math.random() * SPEED_COEF * 2 - SPEED_COEF;
+      }
+      if (this.y - this.anchorY < -ANCHOR_LENGTH) {
+        this.vy = Math.random() * SPEED_COEF;
+      } else if (this.y - this.anchorY > ANCHOR_LENGTH) {
+        this.vy = Math.random() * -SPEED_COEF;
+      } else {
+        this.vy = Math.random() * SPEED_COEF * 2 - SPEED_COEF;
+      }
+    }
+    this.x += this.vx * this.energy / 100;
+    this.y += this.vy * this.energy / 100;
+  };
+
+  function initNodes() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    NODES_QTY = 0;
+    nodes = [];
+    for (var i = DENSITY; i < canvas.width; i += DENSITY) {
+      for (var j = DENSITY; j < canvas.height; j += DENSITY) {
+        nodes.push(new Node(i, j));
+        NODES_QTY++;
+      }
+    }
+  }
+
+  function calcDistance(node1, node2) {
+    return Math.sqrt(Math.pow(node1.x - node2.x, 2) + (Math.pow(node1.y - node2.y, 2)));
+  }
+
+  function findSiblings() {
+    var node1, node2, distance;
+    for (var i = 0; i < NODES_QTY; i++) {
+      node1 = nodes[i];
+      node1.siblings = [];
+      for (var j = 0; j < NODES_QTY; j++) {
+        node2 = nodes[j];
+        if (node1 !== node2) {
+          distance = calcDistance(node1, node2);
+          if (distance < SENSITIVITY) {
+            if (node1.siblings.length < SIBLINGS_LIMIT) {
+              node1.siblings.push(node2);
+            } else {
+              var node_sibling_distance = 0;
+              var max_distance = 0;
+              var s;
+              for (var k = 0; k < SIBLINGS_LIMIT; k++) {
+                node_sibling_distance = calcDistance(node1, node1.siblings[k]);
+                if (node_sibling_distance > max_distance) {
+                  max_distance = node_sibling_distance;
+                  s = k;
+                }
+              }
+              if (distance < max_distance) {
+                node1.siblings.splice(s, 1);
+                node1.siblings.push(node2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function redrawScene() {
+    resizeWindow();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    findSiblings();
+    var i, node, distance;
+    for (i = 0; i < NODES_QTY; i++) {
+      node = nodes[i];
+      distance = calcDistance({
+        x: mouse.x,
+        y: mouse.y
+      }, node);
+      if (distance < MOUSE_RADIUS) {
+        node.brightness = 1 - distance / MOUSE_RADIUS;
+      } else {
+        node.brightness = 0;
+      }
+    }
+    for (i = 0; i < NODES_QTY; i++) {
+      node = nodes[i];
+      if (node.brightness) {
+        node.drawConnections();
+        node.drawNode();
+      }
+      node.moveNode();
+    }
+    requestAnimationFrame(redrawScene);
+  }
+
+  function initHandlers() {
+    document.addEventListener('resize', resizeWindow, false);
+    document.addEventListener('mousemove', mousemoveHandler, false);
+  }
+
+  function resizeWindow() {
+    effectiveHeight = Math.round(Math.max(
+            content_element.offsetHeight, content_element.scrollHeight,
+            content_element.clientHeight, window.innerHeight));
+    if (window.innerWidth != canvas.width || effectiveHeight != canvas.height) {
+        canvas.width = window.innerWidth;
+        canvas.height = effectiveHeight;
+        initNodes();
+    }
+  }
+  function mousemoveHandler(e) {
+    mouse.x = window.pageXOffset + e.clientX;
+    mouse.y = window.pageYOffset + e.clientY;
+  }
+
+  initHandlers();
+  initNodes();
+  redrawScene();
+
+})();
+    </script>
+</body>
+</html>
