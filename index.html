@@ -12,7 +12,7 @@
           --border-color: black;
           --window-color: white;
           --background-color: white;
-          --background-radius: 250;
+          --background-radius: 350;
           --background-speed: 0.65;
           --energy-decay: 0.3;
         }
@@ -271,12 +271,13 @@
   }
 
   function initHandlers() {
-    document.addEventListener('resize', resizeWindow, false);
-    document.addEventListener('mousemove', moveHandler, false);
-    document.addEventListener('touchmove', moveHandler, false);
+    document.addEventListener('resize', resizeWindow);
+    document.addEventListener('orientationchange', resizeWindow);
+    document.addEventListener('mousemove', moveHandler);
+    document.addEventListener('touchmove', moveHandler);
   }
 
-  function resizeWindow() {
+  function resizeWindow(evt) {
     effectiveHeight = Math.round(Math.max(
             content_element.offsetHeight, content_element.scrollHeight,
             content_element.clientHeight, window.innerHeight));
