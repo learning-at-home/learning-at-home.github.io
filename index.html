@@ -51,7 +51,7 @@
           display: inline-block
         }
         .title {
-           font-size: 64px;
+           font-size: 48px;
            box-shadow: 0 0 5px 5px var(--window-color);
            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,
                         sans-serif,Apple Color Emoji,Segoe UI Emoji;
@@ -67,16 +67,13 @@
         <div id="overlay">
             <div id="main_window">
                 <div id="header" width="30%">
-                    <img src="logo.png"
-                         style="width: 50%; max-height: 320px; max-width: 320px;">
+                    <img src="logo.png" id="bug-logo" style="width: 50%; max-height: 320px; max-width: 320px;">
                     <br>
                     <h1 class="faded title" style="margin-top:-3%;">
                         <p style="margin-top: 0px; margin-bottom:0px;">
-                            <sup style="font-size: 18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sup>
-                            hivemind<wbr> 
-                            <sup style="font-size: 18px">v0.8&nbsp;pre&#8209;alpha</sup>
+                            <sup style="font-size: 18px">learning@home</sup>
+                            hivemind
+                            <sup style="font-size: 18px">v0.8&nbsp;pre&#8209;alpha&nbsp;&nbsp;&nbsp;</sup>
                         </p>
                         <p style="font-size: 18px; margin-top:0px; margin-bottom:0px;">train vast neural networks together</p>
                     </h1>
@@ -86,7 +83,7 @@
                     We're building a library to train large neural networks across the internet. Think GPT-3 training hosted by thousand nodes from universities, companies, volunteers.
                     <br><br>
                     <div style="width:100%; margin: 0 auto;">
-                        widgets TODOgithub | TODOquickstart | TODOarxiv
+                        TODOgithub widgets | TODOarxiv
                     </div>
                 </div>
                 
@@ -104,11 +101,13 @@
 // Note 2: Pawel, you're awesome.
 (function() {
   content_element = document.getElementById("overlay");
+  logo_element = document.getElementById("bug-logo").getBoundingClientRect();
+
   var canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
   css_opts = getComputedStyle(document.documentElement);
   SENSITIVITY = css_opts.getPropertyValue('--background-sensitivity') || 120;
   SIBLINGS_LIMIT = css_opts.getPropertyValue('--background-siblings') || 10;
-  DENSITY = css_opts.getPropertyValue('--background-density') || 70;
+  DENSITY = css_opts.getPropertyValue('--background-density') || 60;
   MOUSE_RADIUS = css_opts.getPropertyValue('--background-radius') || 250;
   SPEED_COEF = css_opts.getPropertyValue('--background-speed') || 2;
   ENERGY_DECAY = css_opts.getPropertyValue('--energy-decay') || 2;
@@ -131,8 +130,8 @@
 
   resizeWindow();
   mouse = {
-    x: canvas.width / 2,
-    y: canvas.height / 2
+    x: (logo_element.left + logo_element.right) / 2,
+    y: (logo_element.top + logo_element.bottom) / 2
   };
 
   function Node(x, y) {
@@ -273,7 +272,8 @@
 
   function initHandlers() {
     document.addEventListener('resize', resizeWindow, false);
-    document.addEventListener('mousemove', mousemoveHandler, false);
+    document.addEventListener('mousemove', moveHandler, false);
+    document.addEventListener('touchmove', moveHandler, false);
   }
 
   function resizeWindow() {
@@ -286,9 +286,16 @@
         initNodes();
     }
   }
-  function mousemoveHandler(e) {
-    mouse.x = window.pageXOffset + e.clientX;
-    mouse.y = window.pageYOffset + e.clientY;
+  function moveHandler(evt) {
+    if (evt.type == "mousemove") {
+        mouse.x = window.pageXOffset + evt.clientX;
+        mouse.y = window.pageYOffset + evt.clientY;
+    }
+    else {
+        mouse.x = window.pageXOffset + evt.changedTouches[0].screenX;
+        mouse.y = window.pageYOffset + evt.changedTouches[0].screenY;
+    }
+      
   }
 
   initHandlers();
