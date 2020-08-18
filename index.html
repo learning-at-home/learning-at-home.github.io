@@ -11,9 +11,12 @@
         :root {
           --border-color: black;
           --window-color: white;
+          --background-move-on-cursor: false;
           --background-color: white;
-          --background-radius: 350;
-          --background-speed: 0.65;
+          --background-cursor-width: 400;
+          --background-cursor-height: 200;
+          --background-show-if-wider-than: 500;
+          --background-speed: 0.001;
           --energy-decay: 0.3;
         }
         body {
@@ -59,10 +62,10 @@
         .scrollbar {
           overflow-y: scroll;
         }
-        .button {
+        .arxiv_button {
           position: relative;
           display: inline-block;
-          width: 120px;
+          width: 128px;
           height: 28px;
           background-image: linear-gradient(180deg, #fafbfc, #eff3f6 90%);
           color: #24292e;
@@ -75,27 +78,34 @@
           font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
           font-weight: 600;
         }
-        .button:before {
+        .arxiv_button:before {
           content: "";
           vertical-align:middle;
           display: inline-block;
           width: 24px;
           height: 24px;
           border: none;
-          margin-left: -15px;
-          margin-right: 4px;
-          margin-top: 0.5px;
+          margin-left: -12px;
+          margin-right: 6px;
+          margin-top: 0px;
           background: url('https://static.arxiv.org/static/browse/0.3.2.5/images/icons/favicon.ico') right center no-repeat;
           background-size: 16px 16px;
         }
-        .button:hover {
+        .arxiv_button:hover {
             background-color:#e6ebf1;
             background-position:-0.5em;
             border-color: #9fa4a9;
             border-color:rgba(27,31,35,.35);
             background-image:linear-gradient(180deg, #f0f3f6, #e6ebf1 90%)
         }
-
+        a:link {
+            color: #00194a;
+            text-decoration: none;
+        }
+        a:visited {
+            color: #3f004a;
+            text-decoration: none;
+        }
     </style>
 
 <body>
@@ -104,7 +114,8 @@
         <div id="overlay">
             <div id="main_window">
                 <div id="header" width="30%">
-                    <img src="logo.png" id="bug-logo" style="width: 50%; max-height: 320px; max-width: 320px;">
+                    <img src="logo.png" id="bug-logo" 
+                         style="width: 40%; max-height: 320px; max-width: 320px;">
                     <br>
                     <h1 class="faded title" style="margin-top:-3%;">
                         <p style="margin-top: 0px; margin-bottom:0px;">
@@ -116,29 +127,140 @@
                     </h1>
                 </div>
                 
-                <div class="faded" style="margin-top:35px;">
+                <div class="faded text" style="margin-top:35px;">
                     We're building a library to train large neural networks across the internet. Imagine training GPT-3 on thousands of nodes from universities, companies and volunteers.
                     <br><br>
                     <div style="width:100%; margin: 0 auto;">
-                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Star</a>
-                        <a class="github-button" href="https://github.com/learning-at-home/hivemind/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch ntkme/github-buttons on GitHub">Watch</a>
+                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Browse the code</a>
                         <div style="overflow: hidden; white-space: nowrap; margin: 0 auto; display: inline-block;">
-                            <button onclick="window.location.href='https://arxiv.org/abs/2002.04013'" 
-                                class="button">Read the paper</button>
+                            <button onclick="window.open('https://arxiv.org/abs/2002.04013');" 
+                                    class="arxiv_button">Read the paper</button>
                         </div>
-                        <a href="https://twitter.com/intent/tweet?button_hashtag=learningathome" class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet #learningathome</a>
+                        <a href="https://twitter.com/intent/tweet?url=learning-at-home.github.io&button_hashtag=learningathome"
+                           class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet #learningathome</a>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
                         <script async defer src="https://buttons.github.io/buttons.js"></script>
                     </div>
                 </div>
                 
-                <hr class="faded" style="width: 100%; margin-top:15px;">
+                <hr class="faded" style="width: 70%; margin-top:20px; margin-bottom: 20px">
+                
+                
 
+                
                 <div class="faded" style="margin-top:35px;">
-                  Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                    <div style="width: 100%; max-width: 480px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
+                        <p class="faded title" style="font-size:28px; margin-bottom:12px">
+                            Why should you care?</p>
+                        <span class="faded text" style="margin-top: 4px;">
+                            Larger neural networks are winning:
+                            <ul style="text-align: left; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
+                                <li style="margin-top: 12px;">
+                                    Training BERT-like models <a href=https://w4ngatang.github.io/static/papers/superglue.pdf target="_blank" rel="noopener noreferrer">dominate</a> most nlp tasks;</li>
+                                <li style="margin-top: 12px;">
+                                    Bigger CNNs <a href="https://arxiv.org/abs/1912.11370" target="_blank" rel="noopener noreferrer">perform better</a> at computer vision tasks;</li>
+                                <li style="margin-top: 12px;">GPT-3 has <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">175B</a> parameters and we're <a href="https://arxiv.org/abs/2006.16668">still counting!</a></li>
+                            </ul>
+                            
+                        <center><span style="padding-top: 16px; font-style: italic; font-size: 16px;">
+                            Figure: Kaplan et al, <a href=https://arxiv.org/abs/2001.08361>Scaling laws for neural language models</a>.</span></center>
+                            
+                        </span>
+
+                    </div>
+                    <div style="width: 100%; max-width: 320px; vertical-align: middle; display: inline-block;">
+                      <img src="PerfVsParams-StepBudget-1.png" width=100%>
+                    </div>
+                    
+                    <p style="width: 100%; max-width: 800px; margin-top:12px">
+                        That said, training large neural networks ain't cheap. The hardware used for the <a href="https://arxiv.org/abs/1909.08053" target="_blank" rel="noopener noreferrer">previous largest</a> language model costs over $25 million. A single training run for GPT-3 will set you back <a href="https://lambdalabs.com/blog/demystifying-gpt-3/" target="_blank" rel="noopener noreferrer">at least $4.6M</a> in cloud GPUs. As a result, researchers can't contribute to state-of-the-art deep learning models and practicioners can't build applications without <a href=https://blogs.microsoft.com/ai/openai-azure-supercomputer target="_blank" rel="noopener noreferrer">being supported</a> by a megacorporation. It's bad for science, it's is bad for society, it must be fixed.
+                    </p>
                 </div>
-                <br><br>
+                <div class="faded" style="margin-top:35px; width: 100%; max-width: 800px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
+                    <p class="faded title" style="font-size:28px; margin-bottom:12px">
+                        How it works?</p>
+                    <p class="faded text">
+                        Hivemind is a library for decentralized training of large neural networks. Here's what it does:
+                    </p>
+                    
+                    <img src="https://w7.pngwing.com/pngs/634/575/png-transparent-youtube-logo-youtube-computer-icons-font-awesome-logo-video-icon-angle-rectangle-triangle.png" style="width:100%; min-width:320px; margin-top:12px">
+                </div>
+                
+            <div class="faded" style="margin-top:35px;">
+                    <div style="width: 100%; max-width: 500px; vertical-align: top; display: inline-block; text-align: left; padding-right: 5px">
+                        <span class="faded text" style="margin-top: 36px;">
+                            In a hivemind expertiment:
+                            <ul style="text-align: left; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
+                                <li style="margin-top: 12px;">
+                                    Everyone trains one giant model with Mixture-of-Experts layers,</li>
+                                <li style="margin-top: 12px;">
+                                    Each participant hosts one or more "experts" (aka sub-networks),</li>
+                                <li style="margin-top: 12px;">
+                                    Peers discover each other's experts using a <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">DHT</a> (~BitTorrent)</li>
+                            </ul>
+                        </span>
+                        <p class="faded text">
+                                Take a look at TODO(tutorial, docs) for more details TODO TODO TODO TODO TODO TODO
+                        </p>
+                    </div>
+                    <div style="width: 100%; max-width: 320px; min-width: 320px; vertical-align: top; display: inline-block; margin-top: 40px">
+                      <img src="teasseract-1.png" width=100%>
+                    </div>
+
+                    
+                    <div class="faded" style="margin-top:64px; width: 100%; max-width: 800px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
+                        <p class="faded title" style="font-size:28px; margin-bottom:12px">
+                            When should I use it?</p>
+                    
+                        <p class="faded text" style="margin-top:12px">Hivemind v0.8 is an early prototype, 
+                            you should use it if you want to contribute to its development or conduct related research.
+                            Feel free to <a href=https://github.com/learning-at-home/hivemind/issues target="_blank" rel="noopener noreferrer">contact us on github</a> with any questions, feedback or issues you encounter.
+                        </p>
+                        
+                        <p class="faded text" style="margin-top:15px">
+                            We design for three use cases:
+                            <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
+                                <li style="margin-top: 12px;">
+                                    Crowdsourced deep learning using compute from volunteers or decentralized participants; </li>
+                                <li style="margin-top: 12px;">
+                                    Training neural networks on multiple servers with varying compute, bandwitdth and reliability; </li>
+                                <li style="margin-top: 12px;">
+                                     <b>[TBA]</b> Training outrageously large neural networks across multiple compute clusters.</li>
+                            </ul>
+
+                        </p>
+                        <p class="faded text" style="margin-top:15px">
+                            Conversely, here's what hivemind is <b>not</b>:
+                            <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
+                                <li style="margin-top: 12px;">
+                                    A tool to split your model between 2-3 servers that you own: better use <a href=https://pytorch.org/docs/stable/rpc.html target="_blank"rel="noopener noreferrer">torch.distributed.rpc</a>;</li>
+                                <li style="margin-top: 12px;">
+                                    A tool for distributed training for a reliable, uniform and highly connected clusted: use <a href=https://github.com/microsoft/DeepSpeed target="_blank"rel="noopener noreferrer">DeepSpeed</a> or similar; </li>
+                                <li style="margin-top: 12px;">
+                                    A platform for cryptocurrency incentivized by deep learning: see related work below;</li>
+                            </ul>
+
+                        </p>
+                    </div>
+            
+            
+                <div class="faded" style="margin-top:64px; width: 100%; max-width: 800px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
+                    <p class="faded title" style="font-size:28px; margin-bottom:12px">
+                            Related projects</p>
+                    
+                    <p class="faded text" style="margin-top:12px">
+                        Finally, here are several related projects that you may find useful if you've already read that far.
+                    </p>
+                    <p class="faded text" style="margin-top:12px">
+                        TODO next: here's a link to tutorial, here's a repo, etc.
+                    </p>
+
+                </div>
+
+            
+                </div>
+                <hr style="margin-top:30px">
             </div>
         </div>
     </div>
@@ -146,47 +268,49 @@
 // draw background; Note: this background is based on https://codepen.io/pawelqcm/pen/oxPYox by Pawel
 // Note 2: Pawel, you're awesome.
 (function() {
-  content_element = document.getElementById("overlay");
-  logo_element = document.getElementById("bug-logo").getBoundingClientRect();
+  var content_element = document.getElementById("overlay");
+  var canvas = document.querySelector('canvas');
+  var title_elem = document.getElementsByClassName("faded title")[0]
+  ctx = canvas.getContext('2d');
+  if (!ctx)
+      console.warn("Your browser does not support canvas, content may be broken :'(");
 
-  var canvas, ctx, circ, nodes, mouse, SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
+  var SENSITIVITY, SIBLINGS_LIMIT, DENSITY, TOTAL_NODES, ANCHOR_LENGTH, CURSOR_HEIGHT, CURSOR_WIDTH;
   css_opts = getComputedStyle(document.documentElement);
   SENSITIVITY = css_opts.getPropertyValue('--background-sensitivity') || 120;
-  SIBLINGS_LIMIT = css_opts.getPropertyValue('--background-siblings') || 10;
-  DENSITY = css_opts.getPropertyValue('--background-density') || 60;
-  MOUSE_RADIUS = css_opts.getPropertyValue('--background-radius') || 250;
-  SPEED_COEF = css_opts.getPropertyValue('--background-speed') || 2;
+  SIBLINGS_LIMIT = css_opts.getPropertyValue('--background-siblings') || 7;
+  NODE_DENSITY = css_opts.getPropertyValue('--background-node-density') || 6;
+  CURSOR_WIDTH = css_opts.getPropertyValue('--background-cursor-width') || 250;
+  CURSOR_HEIGHT = css_opts.getPropertyValue('--background-cursor-height') || 250;
+  CURSOR_VERTICAL_SHRINK = css_opts.getPropertyValue('--background-cursor-vertical-shrink') || 0.1;
+  SPEED_COEF = css_opts.getPropertyValue('--background-speed') || 1;
   ENERGY_DECAY = css_opts.getPropertyValue('--energy-decay') || 2;
-
+  SHOW_IF_WIDER_THAN = css_opts.getPropertyValue('--background-show-if-wider-than') || 500;
+  MOVE_ON_CURSOR = css_opts.getPropertyValue('--background-move-on-cursor').includes("true") || false;
+    
+  var nodes = [];
   choice = (choices => choices[Math.floor(Math.random() * choices.length)])
   sample_color = () => choice([[40, 40, 40], [133, 133, 133]])
 
-  NODES_QTY = 0;
   ANCHOR_LENGTH = 20;
 
-  circ = 2 * Math.PI;
-  nodes = [];
+  var cursor = {x: 0, y: 0};
 
-  canvas = document.querySelector('canvas');
-
-  ctx = canvas.getContext('2d');
-  if (!ctx) {
-    alert("Your browser does not support canvas, content may be broken :'(");
+  function centralize_cursor() {
+      var rect = document.getElementById("bug-logo").getBoundingClientRect()
+      var window_left = window.pageXOffset || document.documentElement.scrollLeft;
+      var window_top = window.pageYOffset || document.documentElement.scrollTop;
+      cursor.x = window_left + rect.left + rect.width / 2;
+      cursor.y = window_top + rect.top + rect.height / 2;
   }
-
-  resizeWindow();
-  mouse = {
-    x: (logo_element.left + logo_element.right) / 2,
-    y: (logo_element.top + logo_element.bottom) / 2
-  };
-
+    
   function Node(x, y) {
     this.anchorX = x;
     this.anchorY = y;
     this.x = Math.random() * (x - (x - ANCHOR_LENGTH)) + (x - ANCHOR_LENGTH);
     this.y = Math.random() * (y - (y - ANCHOR_LENGTH)) + (y - ANCHOR_LENGTH);
-    this.vx = Math.random() * 2 - 1;
-    this.vy = Math.random() * 2 - 1;
+    this.vx = (Math.random() * 2 - 1) * SPEED_COEF;
+    this.vy = (Math.random() * 2 - 1) * SPEED_COEF;
     this.energy = Math.random() * 100;
     this.radius = Math.random();
     this.siblings = [];
@@ -197,7 +321,7 @@
   Node.prototype.drawNode = function() {
     var color = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.brightness})`;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
+    ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, 2 * Math.PI);
     ctx.fillStyle = color;
     ctx.fill();
   };
@@ -234,20 +358,22 @@
         this.vy = Math.random() * SPEED_COEF * 2 - SPEED_COEF;
       }
     }
-    this.x += this.vx * this.energy / 100;
-    this.y += this.vy * this.energy / 100;
+    relative_speed_rate = Math.min(canvas.height / 100, 10.0)
+    this.x += this.vx * this.energy * relative_speed_rate;
+    this.y += this.vy * this.energy * relative_speed_rate;
   };
 
   function initNodes() {
+    centralize_cursor();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    NODES_QTY = 0;
+    if (canvas.width >= SHOW_IF_WIDER_THAN)
+        total_nodes = Math.round(NODE_DENSITY * (canvas.width / 100 * canvas.height / 100));
+    else
+        total_nodes = 0;
     nodes = [];
-    for (var i = DENSITY; i < canvas.width; i += DENSITY) {
-      for (var j = DENSITY; j < canvas.height; j += DENSITY) {
-        nodes.push(new Node(i, j));
-        NODES_QTY++;
-      }
-    }
+    for (var i = 0; i < total_nodes; i++)
+        nodes.push(new Node(50 + Math.random() * (canvas.width - 100), 
+                            15 + Math.random() * (canvas.height - 30)));
   }
 
   function calcDistance(node1, node2) {
@@ -256,10 +382,10 @@
 
   function findSiblings() {
     var node1, node2, distance;
-    for (var i = 0; i < NODES_QTY; i++) {
+    for (var i = 0; i < nodes.length; i++) {
       node1 = nodes[i];
       node1.siblings = [];
-      for (var j = 0; j < NODES_QTY; j++) {
+      for (var j = 0; j < nodes.length; j++) {
         node2 = nodes[j];
         if (node1 !== node2) {
           distance = calcDistance(node1, node2);
@@ -293,19 +419,14 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     findSiblings();
     var i, node, distance;
-    for (i = 0; i < NODES_QTY; i++) {
+    for (i = 0; i < nodes.length; i++) {
       node = nodes[i];
-      distance = calcDistance({
-        x: mouse.x,
-        y: mouse.y
-      }, node);
-      if (distance < MOUSE_RADIUS) {
-        node.brightness = 1 - distance / MOUSE_RADIUS;
-      } else {
-        node.brightness = 0;
-      }
+      scaled_distance = calcDistance({x: cursor.x / CURSOR_WIDTH, y: cursor.y / CURSOR_HEIGHT},
+                                     {x: node.x / CURSOR_WIDTH, y: node.y / CURSOR_HEIGHT});
+      
+      node.brightness = Math.max(1 - scaled_distance, 0);
     }
-    for (i = 0; i < NODES_QTY; i++) {
+    for (i = 0; i < nodes.length; i++) {
       node = nodes[i];
       if (node.brightness) {
         node.drawConnections();
@@ -319,30 +440,41 @@
   function initHandlers() {
     document.addEventListener('resize', resizeWindow);
     document.addEventListener('orientationchange', resizeWindow);
-    document.addEventListener('mousemove', moveHandler);
-    document.addEventListener('touchmove', moveHandler);
+    if (MOVE_ON_CURSOR) {
+        document.addEventListener('mousemove', moveHandler);
+        document.addEventListener('touchmove', moveHandler);
+    }
   }
 
   function resizeWindow(evt) {
-    effectiveHeight = Math.round(Math.max(
+    var new_width, new_height;
+    new_width = Math.round(Math.max(title_elem.getBoundingClientRect().right, window.innerWidth))
+
+    if (!MOVE_ON_CURSOR)
+        new_height = Math.round(title_elem.getBoundingClientRect().top - canvas.getBoundingClientRect().top);
+    else
+        new_height = Math.round(Math.max(
             content_element.offsetHeight, content_element.scrollHeight,
             content_element.clientHeight, window.innerHeight));
-    if (window.innerWidth != canvas.width || effectiveHeight != canvas.height) {
-        canvas.width = window.innerWidth;
-        canvas.height = effectiveHeight;
+    
+    if (canvas.width != new_width || canvas.height != new_height) {
+        canvas.width = new_width;
+        canvas.height = new_height;
         initNodes();
     }
+    if (!MOVE_ON_CURSOR)
+        centralize_cursor();
   }
+
   function moveHandler(evt) {
     if (evt.type == "mousemove") {
-        mouse.x = window.pageXOffset + evt.clientX;
-        mouse.y = window.pageYOffset + evt.clientY;
+        cursor.x = window.pageXOffset + evt.clientX;
+        cursor.y = window.pageYOffset + evt.clientY;
     }
-    else {
-        mouse.x = window.pageXOffset + evt.changedTouches[0].clientX;
-        mouse.y = window.pageYOffset + evt.changedTouches[0].clientY;
+    else { // touch event
+        cursor.x = window.pageXOffset + evt.changedTouches[0].clientX;
+        cursor.y = window.pageYOffset + evt.changedTouches[0].clientY;
     }
-      
   }
 
   initHandlers();
