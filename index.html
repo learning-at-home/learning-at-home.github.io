@@ -6,6 +6,7 @@
      <link rel="alternate icon" class="js-site-favicon" type="image/png" href="logo.png">
      <link rel="icon" class="js-site-favicon" type="image/png" href="logo.png">
      <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="A library to train large neural networks across the internet. Imagine training GPT-3 on thousands of nodes from universities, companies, and volunteers.">
 </head>
 <style>
         :root {
@@ -85,10 +86,10 @@
           width: 24px;
           height: 24px;
           border: none;
-          margin-left: -12px;
-          margin-right: 6px;
+          margin-left: -16px;
+          margin-right: 4px;
           margin-top: 0px;
-          background: url('https://static.arxiv.org/static/browse/0.3.2.5/images/icons/favicon.ico') right center no-repeat;
+          background: url('paper.ico') right center no-repeat;
           background-size: 16px 16px;
         }
         .arxiv_button:hover {
@@ -105,6 +106,44 @@
         a:visited {
             color: #3f004a;
             text-decoration: none;
+        }
+        .tooltip {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted black;
+        }
+
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -60px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
         }
     </style>
 
@@ -127,11 +166,11 @@
                     </h1>
                 </div>
                 
-                <div class="faded text" style="margin-top:35px;">
-                    We're building a library to train large neural networks across the internet. Imagine training GPT-3 on thousands of nodes from universities, companies and volunteers.
+                <div class="faded text" style="margin-top:35px; width: 100%; max-width: 800px;">
+                    A library to train large neural networks across the internet. Imagine training GPT-3 on thousands of nodes from universities, companies, and volunteers.
                     <br><br>
                     <div style="width:100%; margin: 0 auto;">
-                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Browse the code</a>
+                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Browse the code</a>
                         <div style="overflow: hidden; white-space: nowrap; margin: 0 auto; display: inline-block;">
                             <button onclick="window.open('https://arxiv.org/abs/2002.04013');" 
                                     class="arxiv_button">Read the paper</button>
@@ -143,16 +182,13 @@
                         <script async defer src="https://buttons.github.io/buttons.js"></script>
                     </div>
                 </div>
+                <hr class="faded" style="width: 70%; margin-top:20px;"><br>
                 
-                <hr class="faded" style="width: 70%; margin-top:20px; margin-bottom: 20px">
-                
-                
-
-                
-                <div class="faded" style="margin-top:35px;">
-                    <div style="width: 100%; max-width: 480px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
+                <div class="faded" style="margin-top:35px; display: inline-block; text-align:center;">
+                    <div style="width: 100%; max-width: 480px; display: inline-block; vertical-align: top; text-align:left; padding-right: 5px">
                         <p class="faded title" style="font-size:28px; margin-bottom:12px">
                             Why should you care?</p>
+                        
                         <span class="faded text" style="margin-top: 4px;">
                             Larger neural networks are winning:
                             <ul style="text-align: left; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
@@ -162,108 +198,118 @@
                                     Bigger CNNs <a href="https://arxiv.org/abs/1912.11370" target="_blank" rel="noopener noreferrer">perform better</a> at computer vision tasks;</li>
                                 <li style="margin-top: 12px;">GPT-3 has <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">175B</a> parameters and we're <a href="https://arxiv.org/abs/2006.16668">still counting!</a></li>
                             </ul>
-                            
-                        <center><span style="padding-top: 16px; font-style: italic; font-size: 16px;">
-                            Figure: Kaplan et al, <a href=https://arxiv.org/abs/2001.08361>Scaling laws for neural language models</a>.</span></center>
-                            
+                            <center>
+                              <span style="padding-top: 16px; font-style: italic; font-size: 16px;">
+                                Figure: Kaplan et al, <a href=https://arxiv.org/abs/2001.08361>Scaling laws for neural language models</a>.
+                              </span>
+                            </center>
                         </span>
 
                     </div>
-                    <div style="width: 100%; max-width: 320px; vertical-align: middle; display: inline-block;">
-                      <img src="PerfVsParams-StepBudget-1.png" width=100%>
-                    </div>
-                    
-                    <p style="width: 100%; max-width: 800px; margin-top:12px">
-                        That said, training large neural networks ain't cheap. The hardware used for the <a href="https://arxiv.org/abs/1909.08053" target="_blank" rel="noopener noreferrer">previous largest</a> language model costs over $25 million. A single training run for GPT-3 will set you back <a href="https://lambdalabs.com/blog/demystifying-gpt-3/" target="_blank" rel="noopener noreferrer">at least $4.6M</a> in cloud GPUs. As a result, researchers can't contribute to state-of-the-art deep learning models and practicioners can't build applications without <a href=https://blogs.microsoft.com/ai/openai-azure-supercomputer target="_blank" rel="noopener noreferrer">being supported</a> by a megacorporation. It's bad for science, it's is bad for society, it must be fixed.
+                      <div style="width: 100%; max-width: 320px; vertical-align: middle; display: inline-block;">
+                          <img src="PerfVsParams-StepBudget-1.png" width=100%>
+                      </div>
+
+                    <p style="width: 100%; max-width: 800px; margin-top:16px; text-align: center">
+                        That said, training large neural networks isn't cheap. The hardware used for the <a href="https://arxiv.org/abs/1909.08053" target="_blank" rel="noopener noreferrer">previous largest</a> language model costs over $25 million. A single training run for GPT-3 will set you back <a href="https://lambdalabs.com/blog/demystifying-gpt-3/" target="_blank" rel="noopener noreferrer">at least $4.6M</a> in cloud GPUs. As a result, researchers can't contribute to state-of-the-art deep learning models and practitioners can't build applications without <a href=https://blogs.microsoft.com/ai/openai-azure-supercomputer target="_blank" rel="noopener noreferrer">being supported</a> by a megacorporation. If&nbsp;we&nbsp;want AI to benefit everyone, it can't be privately owned.
                     </p>
+                  
                 </div>
-                <div class="faded" style="margin-top:35px; width: 100%; max-width: 800px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
-                    <p class="faded title" style="font-size:28px; margin-bottom:12px">
-                        How it works?</p>
-                    <p class="faded text">
-                        Hivemind is a library for decentralized training of large neural networks. Here's what it does:
-                    </p>
-                    
-                    <img src="https://w7.pngwing.com/pngs/634/575/png-transparent-youtube-logo-youtube-computer-icons-font-awesome-logo-video-icon-angle-rectangle-triangle.png" style="width:100%; min-width:320px; margin-top:12px">
-                </div>
+                <br>
                 
-            <div class="faded" style="margin-top:35px;">
-                    <div style="width: 100%; max-width: 500px; vertical-align: top; display: inline-block; text-align: left; padding-right: 5px">
-                        <span class="faded text" style="margin-top: 36px;">
-                            In a hivemind expertiment:
+                <div class="faded" style="margin-top:35px; width: 100%; max-width: 800px; display: inline-block; text-align:left;">
+                    <p class="faded title" style="font-size:28px;">
+                        What is hivemind?</p>
+                    <br>
+                    <p class="faded text" style="margin-top:16px;">
+                        Hivemind is a library for decentralized training of large neural networks. 
+                        Here's how it works:<br>
+                    </p>
+                    <img src="https://w7.pngwing.com/pngs/634/575/png-transparent-youtube-logo-youtube-computer-icons-font-awesome-logo-video-icon-angle-rectangle-triangle.png" style="width:100%; min-width:320px; margin-top:12px; align: center;">
+                    <br>
+                
+                    <div style="width: 100%; max-width: 500px; vertical-align: top; display: inline-block; padding-right: 5px">
+                        <span class="faded text">
+                            Here's how hivemind experiment is organized:
                             <ul style="text-align: left; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
                                 <li style="margin-top: 12px;">
                                     Everyone trains one giant model with Mixture-of-Experts layers,</li>
                                 <li style="margin-top: 12px;">
                                     Each participant hosts one or more "experts" (aka sub-networks),</li>
                                 <li style="margin-top: 12px;">
-                                    Peers discover each other's experts using a <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">DHT</a> (~BitTorrent)</li>
+                                    Peers access each other's experts using a <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">Distributed Hash Table</a>
+                                    <br><span style="margin-left:20px">- the same type of protocol that powers BitTorrent file sharing.</span>
+                                </li>
                             </ul>
                         </span>
                         <p class="faded text">
-                                Take a look at TODO(tutorial, docs) for more details TODO TODO TODO TODO TODO TODO
+                            Training can dynamically scale up as more peers join in. Furthermore, hivemind models are fault tolerant. If some of the top-k experts fail to respond to an input, they are temprarily excluded from inference with same effect as <a href=https://jmlr.org/papers/v15/srivastava14a.html target="_blank" rel="noopener noreferrer">dropout</a>.
                         </p>
                     </div>
-                    <div style="width: 100%; max-width: 320px; min-width: 320px; vertical-align: top; display: inline-block; margin-top: 40px">
-                      <img src="teasseract-1.png" width=100%>
+                    <div style="width: 100%; max-width: 280px; min-width: 280px; vertical-align: top; display: inline-block; margin-top: 0px;">
+                        <img src="teasseract-1.png" style="width:100%;">
                     </div>
-
+                </div>
                     
-                    <div class="faded" style="margin-top:64px; width: 100%; max-width: 800px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
-                        <p class="faded title" style="font-size:28px; margin-bottom:12px">
-                            When should I use it?</p>
+                <div class="faded" style="margin-top:35px; width: 100%; max-width: 800px; align: center; vertical-align: top; display: inline-block; text-align:left;">
+                    <p class="faded title" style="font-size:28px;">
+                        When should I use it?
+                    </p>
+                    <br>
                     
-                        <p class="faded text" style="margin-top:12px">Hivemind v0.8 is an early prototype, 
-                            you should use it if you want to contribute to its development or conduct related research.
-                            Feel free to <a href=https://github.com/learning-at-home/hivemind/issues target="_blank" rel="noopener noreferrer">contact us on github</a> with any questions, feedback or issues you encounter.
-                        </p>
+                    <span class="faded text" style="margin-top:15px">
+                        Hivemind is designed for three main scenarios:
+                        <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
+                            <li style="margin-top: 12px;">
+                                Crowdsourced deep learning using compute from volunteers or decentralized participants; </li>
+                            <li style="margin-top: 12px;">
+                                Training neural networks on multiple servers with varying compute, bandwidth and reliability; </li>
+                            <li style="margin-top: 12px;">
+                                 <b>[TBA]</b> Training outrageously large neural networks across multiple compute clusters.</li>
+                        </ul>
+                        <br>
                         
-                        <p class="faded text" style="margin-top:15px">
-                            Hivemind is designed for three use cases:
-                            <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
-                                <li style="margin-top: 12px;">
-                                    Crowdsourced deep learning using compute from volunteers or decentralized participants; </li>
-                                <li style="margin-top: 12px;">
-                                    Training neural networks on multiple servers with varying compute, bandwitdth and reliability; </li>
-                                <li style="margin-top: 12px;">
-                                     <b>[TBA]</b> Training outrageously large neural networks across multiple compute clusters.</li>
-                            </ul>
+                        Conversely, here's what it <b>isn't</b> for:
+                        <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
+                            <li style="margin-top: 12px;">
+                                Splitting your model between 2-3 servers that you fully control: use <a href=https://pytorch.org/docs/stable/rpc.html target="_blank"rel="noopener noreferrer">torch.distributed.rpc</a>;</li>
+                            <li style="margin-top: 12px;">
+                                Distributed training for a reliable, uniform and highly connected cluster: use <a href=https://github.com/microsoft/DeepSpeed target="_blank"rel="noopener noreferrer">DeepSpeed</a>; </li>
+                            <li style="margin-top: 12px;">
+                                Training <span class="tooltip">small <span class="tooltiptext">More specifically, models that fit into a single worker's memory.</span></span> models with a dynamic number of in-house workers: use <a href=https://pytorch.org/elastic/0.2.0/index.html>torch.elastic</a>.</li>
 
+                        </ul>
+                        
+                        
+                        <p style="margin-top: 16px; text-align:center">
+                            Hivemind v0.8 is in the early alpha stage: the core functionality to train
+                            decentralized models is there, but the inferface is still in active development.
+                            If you want to try hivemind for yourself or contribute to its development,
+                            take a look at <a href=https://learning-at-home.readthedocs.io/en/latest/user/quickstart.html>the quickstart tutorial</a>.
+                            Contact us <a href=https://github.com/learning-at-home/hivemind/issues target="_blank" rel="noopener noreferrer">on github</a> with any questions, feedback and issues.
                         </p>
-                        <p class="faded text" style="margin-top:15px">
-                            Conversely, here's what hivemind is <b>not</b> for:
-                            <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
-                                <li style="margin-top: 12px;">
-                                    Splitting your model between 2-3 servers that you own: better use <a href=https://pytorch.org/docs/stable/rpc.html target="_blank"rel="noopener noreferrer">torch.distributed.rpc</a>;</li>
-                                <li style="margin-top: 12px;">
-                                    Distributed training for a reliable, uniform and highly connected clusted: use <a href=https://github.com/microsoft/DeepSpeed target="_blank"rel="noopener noreferrer">DeepSpeed</a> or similar; </li>
-                                <li style="margin-top: 12px;">
-                                    Building a cryptocurrency incentivized by deep learning: see related projects below;</li>
-                            </ul>
-
-                        </p>
-                    </div>
-            
-            
-                <div class="faded" style="margin-top:64px; width: 100%; max-width: 800px; vertical-align: top; display: inline-block; text-align:left; padding-right: 5px">
-                    <p class="faded title" style="font-size:28px; margin-bottom:12px">
-                            Related projects</p>
-                    
-                    <p class="faded text" style="margin-top:12px">
-                        Finally, here are several related projects that you may find useful if you've already read that far.
-                    </p>
-                    <p class="faded text" style="margin-top:12px">
-                        TODO next: here's a link to tutorial, here's a repo, etc.
-                    </p>
-
+                    </span>
                 </div>
+                
 
-            
+                <div style="margin: 0 auto; margin-top: 16px;">
+                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Browse the code</a>
+                        <div style="overflow: hidden; white-space: nowrap; margin: 0 auto; display: inline-block;">
+                            <button onclick="window.open('https://arxiv.org/abs/2002.04013');" 
+                                    class="arxiv_button">Read the paper</button>
+                        </div>
+                        <a href="https://twitter.com/intent/tweet?url=learning-at-home.github.io&button_hashtag=learningathome"
+                           class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet #learningathome</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                        <script async defer src="https://buttons.github.io/buttons.js"></script>
                 </div>
-                <hr style="margin-top:30px">
+                <hr style="margin-top:32px; margin-bottom: 64px;">
             </div>
         </div>
     </div>
+
+            
     <script>
 // draw background; Note: this background is based on https://codepen.io/pawelqcm/pen/oxPYox by Pawel
 // Note 2: Pawel, you're awesome.
