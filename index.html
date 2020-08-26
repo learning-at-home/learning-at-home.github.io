@@ -91,7 +91,7 @@
         .arxiv_button {
           position: relative;
           display: inline-block;
-          width: 128px;
+          width: 80px;
           height: 28px;
           background-image: linear-gradient(180deg, #fafbfc, #eff3f6 90%);
           color: #24292e;
@@ -100,6 +100,7 @@
           cursor: pointer;
           border-radius: 4px;
           padding-right: 0px;
+          padding-top: 2.5px;
           font-size: 12px;
           font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
           font-weight: 600;
@@ -113,9 +114,9 @@
           border: none;
           margin-left: -16px;
           margin-right: 4px;
-          margin-top: 0px;
-          background: url('paper.ico') right center no-repeat;
-          background-size: 16px 16px;
+          margin-top: -2px;
+          background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512"><path d="M428 224H288a48 48 0 01-48-48V36a4 4 0 00-4-4h-92a64 64 0 00-64 64v320a64 64 0 0064 64h224a64 64 0 0064-64V228a4 4 0 00-4-4z"></path><path d="M419.22 188.59L275.41 44.78a2 2 0 00-3.41 1.41V176a16 16 0 0016 16h129.81a2 2 0 001.41-3.41z"></path></svg>') right center no-repeat;
+          background-size: 18px 16px;
         }
         .arxiv_button:hover {
             background-color:#e6ebf1;
@@ -195,13 +196,13 @@
                     A library to train large neural networks across the internet. Imagine training one huge transformer on thousands of computers from universities, companies, and volunteers.
                     <br><br>
                     <div style="width:100%; margin: 0 auto;">
-                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Browse the code</a>
+                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-size="large" data-show-count="false" aria-label="Star learning-at-home/hivemind on GitHub">Code</a>
                         <div style="overflow: hidden; white-space: nowrap; margin: 0 auto; display: inline-block;">
                             <button onclick="window.open('https://arxiv.org/abs/2002.04013');" 
-                                    class="arxiv_button">Read the paper</button>
+                                    class="arxiv_button">Paper</button>
                         </div>
-                        <a href="https://twitter.com/intent/tweet?button_hashtag=learningathome&hashtags=joinhivemind&text=Join%20the%20deep%20learning%20hivemind!%0Alearning-at-home.github.io"
-                           class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet #learningathome</a>
+                        <a href="https://twitter.com/intent/tweet?hashtags=learningathome,joinhivemind&text=Join%20the%20deep%20learning%20hivemind!%0Alearning-at-home.github.io"
+                           class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet</a>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
                         <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -218,11 +219,11 @@
                             Larger neural networks are winning:
                             <ul style="text-align: left; list-style-position: inside; margin-top: 12px; margin-left: -32px;">
                                 <li style="margin-top: 12px;">
-                                    Pretrained transformers <a href=https://w4ngatang.github.io/static/papers/superglue.pdf target="_blank" rel="noopener noreferrer">dominate</a> most NLP tasks;</li>
+                                    pretrained transformers <a href=https://w4ngatang.github.io/static/papers/superglue.pdf target="_blank" rel="noopener noreferrer">dominate</a> most NLP tasks;</li>
                                 <li style="margin-top: 12px;">
-                                    Bigger CNNs <a href="https://arxiv.org/abs/1912.11370" target="_blank" rel="noopener noreferrer">perform better</a> at computer vision;</li>
+                                    bigger CNNs <a href="https://arxiv.org/abs/1912.11370" target="_blank" rel="noopener noreferrer">perform better</a> at computer vision;</li>
                                 <li style="margin-top: 12px;">
-                                    GPT-3 has <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">175B</a> parameters and <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2006.16668">still counting!</a></li>
+                                    GPT-3 has <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">175B</a> parameters and <a target="_blank" rel="noopener noreferrer" href="https://arxiv.org/abs/2006.16668">the race continues</a></li>
                             </ul>
                             
                             With transfer learning, these large models can harness nearly unlimited raw data to improve performance on both <a href=https://paperswithcode.com/task/language-modelling target="_blank" rel="noopener noreferrer">academic benchmarks</a> and solve <a href=https://medium.com/towards-artificial-intelligence/crazy-gpt-3-use-cases-232c22142044 target="_blank" rel="noopener noreferrer">new unexpected</a> tasks.
@@ -238,19 +239,19 @@
                     </div>
                     <div class style="width: 100%; max-width: 440px; vertical-align: middle; display: inline-block;">
                         <div class="carousel" 
-                          data-flickity='{ "draggable": ">1", "pageDots": false}'>
-                            <div class="carousel-cell" style="padding-left:10px; padding-right:10px;">
+                          data-flickity='{ "draggable": ">1", "pageDots": false, "groupCells": true}'>
+                            <div class="carousel-cell" style="padding-left:40px; padding-right:40px;">
                                 <img width=340px height=250px src="kaplan1.png">
                             </div>
-                            <div class="carousel-cell" style="padding-left:10px; padding-right:10px;">
+                            <div class="carousel-cell" style="padding-left:40px; padding-right:40px;">
                                 <img width=320px height=250px src="gpipe1.png"></div>
-                            <div class="carousel-cell" style="padding-left:10px; padding-right:10px;">
+                            <div class="carousel-cell" style="padding-left:40px; padding-right:40px;">
                                 <img width=320px height=250px src="gpipe2.png"></div>
                         </div>
                     </div>
 
                     <p style="width: 100%; max-width: 900px; margin-top:16px; text-align: left">
-                        That said, training large neural networks isn't cheap. The hardware used for the <a href="https://arxiv.org/abs/1909.08053" target="_blank" rel="noopener noreferrer">previous largest</a> language model costs over $25 million. A single training run for GPT-3 will set you back <a href="https://lambdalabs.com/blog/demystifying-gpt-3/" target="_blank" rel="noopener noreferrer">at least $4.6M</a> in cloud GPUs. As a result, researchers can't contribute to state-of-the-art deep learning models and practitioners can't build applications without <a href=https://blogs.microsoft.com/ai/openai-azure-supercomputer target="_blank" rel="noopener noreferrer">being supported</a> by a megacorporation. If&nbsp;we&nbsp;want the future of AI to be open, it can't be privately owned.
+                        That said, training large neural networks isn't cheap. The hardware used for the <a href="https://arxiv.org/abs/1909.08053" target="_blank" rel="noopener noreferrer">previous largest</a> language model costs over $25 million. A single training run for GPT-3 will set you back <a href="https://lambdalabs.com/blog/demystifying-gpt-3/" target="_blank" rel="noopener noreferrer">at least $4.6M</a> in cloud GPUs. As a result, researchers can't contribute to state-of-the-art deep learning models and practitioners can't build applications without <a href=https://blogs.microsoft.com/ai/openai-azure-supercomputer target="_blank" rel="noopener noreferrer">being supported</a> by a megacorporation. If&nbsp;we&nbsp;want the future of AI to be bright, it can't be private.
                     </p>
                   
                 </div>
@@ -265,41 +266,49 @@
                         Here's how it works:<br>
                     </p>
                     <div class="container">
-                        <img src="https://w7.pngwing.com/pngs/634/575/png-transparent-youtube-logo-youtube-computer-icons-font-awesome-logo-video-icon-angle-rectangle-triangle.png" style="width:100%; max-width:880px; min-width:320px; margin-top:12px; float:center;">
-                        <div style="position: absolute; top: 50%; left: 50%; 
-                                    transform: translate(-50%, 100%); font-size: 48px; color: gray;">
-                        To be uploaded...</div>
+                        <video src="video.mp4" style="width:100%; max-width:880px; min-width:320px; margin-top:12px; float:center;" controls>
+                        </video>
                     </div>
                     <br>
                     <div style="text-align: center">
                       <div style="width: 100%; max-width: 500px; vertical-align: top; display: inline-block; padding-right: 5px; text-align: left;">
                         <span class="faded text" style="margin-top:16px">
-                            A typical hivemind experiment is organized as such:
+                            Hivemind trains one giant model with <span class="tooltip">MoE <span class="tooltiptext">Mixture-of-Experts: a layer that contains many smaller modules that each specialize on some subset of inputs.</span></span> layers:
                             <ul style="text-align: left; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
                                 <li style="margin-top: 12px;">
-                                    Everyone trains one giant model with Mixture-of-Experts layers,</li>
+                                    peers can host as many experts as their hardware allows;</li>
                                 <li style="margin-top: 12px;">
-                                    Each participant hosts one or more "experts" (aka sub-networks),</li>
+                                    every peer performs training, calling experts from other peers,</li>
                                 <li style="margin-top: 12px;">
-                                    Peers access each other's experts using a <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">Distributed Hash Table</a>
-                                    <br><span style="margin-left:20px">- the same type of protocol that powers BitTorrent file sharing.</span>
+                                    peers form a Distributed Hash Table to find each other's experts
+                                    <center>
+                                        -&nbsp;the&nbsp;same&nbsp;type&nbsp;of&nbsp;protocol&nbsp;that&nbsp;powers&nbsp;BitTorrent&nbsp;file&nbsp;sharing.</center>
                                 </li>
                             </ul>
+                            <p> Hivemind uses <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">Kademlia</a>-based <span class="tooltip">DHT <span class="tooltiptext">Distributed Hash Table</span></span> that can scale to tens of thousands of peers with logarithmic search complexity.</p>
                         </span>
-                        <p class="faded text">
-                            Training can dynamically scale up as more peers join in. More importantly, hivemind models are fault-tolerant. If some of the <i>k</i> chosen experts fail to process an input, the model can rely on the next best experts available. In other words, Mixture-of-Experts layers handle errors the same way regular neural networks handle <a href=https://jmlr.org/papers/v15/srivastava14a.html target="_blank" rel="noopener noreferrer">dropout</a>.
-                        </p>
                     </div>
                     <div style="width:100%; max-width: 385px; vertical-align: top; display: inline-block; margin-top: 0px; align:center;">
-                        <img src="hivemind_scheme.png" style="width:100%;">
+                        <img src="hivemind_components.png" style="width:100%; max-width:240px">
                     </div>
+                        
+                    <p class="faded text" style="text-align: left;">
+                      On each forward pass, a peer first determines what "speciality" of experts is needed to process the current inputs using a small "gating function" module. Then it finds <i>k</i>&nbsp;(e.g. 4) most suitable experts from other peers in the network using the DHT protocol. Finally, it sends forward pass requests to the selected experts, collects their outputs and averages them for the final prediction. Compared to traditional architectures, the Mixture-of-Experts needs much less bandwidth as every input is only sent to a small fraction of all experts.
+                    </p>
+                    <div style="width:100%; max-width: 900px; vertical-align: top; display: inline-block; margin-top: 0px; align:center;">
+                        <img src="dmoe-forward-backward.png" style="width:100%;">
+                    </div>
+                    <p class="faded text" style="text-align: left; margin-top:5px">
+                      More importantly, the decentralized Mixture-of-Experts layers are inherently fault-tolerant: if some of the chosen experts fail to respond, the model will simply average the remaining ones and call that <a href=https://jmlr.org/papers/v15/srivastava14a.html target="_blank" rel="noopener noreferrer">dropout</a>. In the event that all <i>k</i> experts fail simultaneously, a peer will backtrack and find another <i>k</i> experts across the DHT. Finally, since every input is likely to be processed by different experts, hivemind peers run several <a href=https://papers.nips.cc/paper/4390-hogwild-a-lock-free-approach-to-parallelizing-stochastic-gradient-descent target="_blank" rel="noopener noreferrer">asynchronous training</a> batches to better utilize their hardware.
+                    </p>
+
                   </div>
                 </div>
                 <br>
                 
                 <div class="faded" style="margin-top:35px; width: 100%; max-width: 900px; align: center; vertical-align: top; display: inline-block; text-align:left;">
                     <p class="faded title" style="font-size:28px;">
-                        When should I use it?
+                        What is hivemind for?
                     </p>
                     <br>
                     
@@ -307,22 +316,22 @@
                         Hivemind is designed for you to:
                         <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
                             <li style="margin-top: 12px;">
-                                Run Crowdsourced deep learning using compute from volunteers or decentralized participants; </li>
+                                run crowdsourced deep learning using compute from volunteers or decentralized participants; </li>
                             <li style="margin-top: 12px;">
-                                Train neural networks on multiple servers with varying compute, bandwidth and reliability; </li>
+                                train neural networks on multiple servers with varying compute, bandwidth and reliability; </li>
                             <li style="margin-top: 12px;">
-                                 <i>[To be announced]</i> Join a worldwide open deep learning experiment. </li>
+                                 <i>[to be announced]</i> join a worldwide open deep learning experiment. </li>
                         </ul>
                         <br>
                         
                         Conversely, here's what it <b>isn't</b> for:
                         <ul style="text-align: middle; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
                             <li style="margin-top: 12px;">
-                                Splitting your model between 2-3 servers that you fully control: use <a href=https://pytorch.org/docs/stable/rpc.html target="_blank"rel="noopener noreferrer">torch.distributed.rpc</a>;</li>
+                                splitting your model between 2-3 servers that you fully control: use <a href=https://pytorch.org/docs/stable/rpc.html target="_blank"rel="noopener noreferrer">torch.distributed.rpc</a>;</li>
                             <li style="margin-top: 12px;">
-                                Distributed training for a reliable, uniform and highly connected cluster: use <a href=https://github.com/microsoft/DeepSpeed target="_blank"rel="noopener noreferrer">DeepSpeed</a>; </li>
+                                distributed training for a reliable, uniform and highly connected cluster: use <a href=https://github.com/microsoft/DeepSpeed target="_blank"rel="noopener noreferrer">DeepSpeed</a>; </li>
                             <li style="margin-top: 12px;">
-                                Training <span class="tooltip">small <span class="tooltiptext">More specifically, models that fit into a single worker's memory.</span></span> models with dynamically allocated of in-house workers: use <a href=https://pytorch.org/elastic/0.2.0/index.html>torch.elastic</a>.</li>
+                                training <span class="tooltip">small <span class="tooltiptext">More specifically, models that fit into a single worker's memory.</span></span> models with dynamically allocated of in-house workers: use <a href=https://pytorch.org/elastic/0.2.0/index.html>torch.elastic</a>.</li>
 
                         </ul>
                         
@@ -331,7 +340,7 @@
                             Hivemind v0.8 is in the early alpha stage: the core functionality to train
                             decentralized models is there, but the inferface is still in active development.
                             If you want to try hivemind for yourself or contribute to its development,
-                            take a look at <a href=https://learning-at-home.readthedocs.io/en/latest/user/quickstart.html>the quickstart tutorial</a>.
+                            take a look at the <a href=https://learning-at-home.readthedocs.io/en/latest/user/quickstart.html><u>quickstart tutorial</u></a>.
                             Contact us <a href=https://github.com/learning-at-home/hivemind/issues target="_blank" rel="noopener noreferrer">on github</a> with any questions, feedback and issues.
                         </p>
                     </span>
@@ -339,13 +348,13 @@
                 
 
                 <div style="margin: 0 auto; margin-top: 0px;">
-                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-size="large" data-show-count="true" aria-label="Star learning-at-home/hivemind on GitHub">Browse the code</a>
+                        <a class="github-button" href="https://github.com/learning-at-home/hivemind" data-size="large" data-show-count="false" aria-label="Star learning-at-home/hivemind on GitHub">Code</a>
                         <div style="overflow: hidden; white-space: nowrap; margin: 0 auto; display: inline-block;">
                             <button onclick="window.open('https://arxiv.org/abs/2002.04013');" 
-                                    class="arxiv_button">Read the paper</button>
+                                    class="arxiv_button">Paper</button>
                         </div>
-                        <a href="https://twitter.com/intent/tweet?button_hashtag=learningathome&hashtags=joinhivemind&text=Join%20the%20deep%20learning%20hivemind!%0Alearning-at-home.github.io"
-                           class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet #learningathome</a>
+                        <a href="https://twitter.com/intent/tweet?hashtags=joinhivemind,learningathome&text=Join%20the%20deep%20learning%20hivemind!%0Alearning-at-home.github.io"
+                           class="twitter-hashtag-button" data-show-count="true" data-size="large">Tweet</a>
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
                         <script async defer src="https://buttons.github.io/buttons.js"></script>
