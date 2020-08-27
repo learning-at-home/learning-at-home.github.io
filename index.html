@@ -262,8 +262,7 @@
                         What is hivemind?</p>
                     <br>
                     <p class="faded text" style="margin-top:16px;">
-                        Hivemind is a library for decentralized training of large neural networks. 
-                        Here's how it works:<br>
+                        Hivemind is a library for decentralized training of large neural networks. In a nutshell, you want to train a neural network, but all you have is a bunch of enthusiasts with assorted unreliable computers that communicate over the internet. Any peer may fail or leave at any time, but the training must continue. Hivemind models survive in these conditions by using <b>DMoE</b> layers: <b>D</b>ecentralized <b>M</b>ixture of <b>E</b>xperts. Here's how they work:<br>
                     </p>
                     <div class="container">
                         <video src="dmoe_demonstration.mp4" style="width:100%; max-width:880px; min-width:320px; margin-top:12px; float:center;" controls>
@@ -273,19 +272,19 @@
                     <div style="text-align: center">
                       <div style="width: 100%; max-width: 500px; vertical-align: top; display: inline-block; padding-right: 5px; text-align: left;">
                         <span class="faded text" style="margin-top:16px">
-                            Hivemind trains one giant model with <span class="tooltip">MoE <span class="tooltiptext">Mixture-of-Experts: a layer that contains many smaller modules that each specialize on some subset of inputs.</span></span> layers:
+                            In a hivemind experiment, all peers:
                             <ul style="text-align: left; list-style-position: inside; margin-top: 16px; margin-left: -32px;">
                                 <li style="margin-top: 12px;">
-                                    peers can host as many experts as their hardware allows;</li>
+                                    host one or more experts depending on their hardware;</li>
                                 <li style="margin-top: 12px;">
-                                    every peer performs training, calling experts from other peers,</li>
+                                    run asynchronous training, calling experts from other peers,</li>
                                 <li style="margin-top: 12px;">
-                                    peers form a Distributed Hash Table to find each other's experts
-                                    <center>
-                                        -&nbsp;the&nbsp;same&nbsp;type&nbsp;of&nbsp;protocol&nbsp;that&nbsp;powers&nbsp;BitTorrent&nbsp;file&nbsp;sharing.</center>
+                                    form a Distributed Hash Table to discover each other's experts<br>
+                                    <span style="padding-left:24px">
+                                        -&nbsp;the same type of protocol that powers BitTorrent&nbsp;file&nbsp;sharing.</span>
                                 </li>
                             </ul>
-                            <p> Hivemind uses <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">Kademlia</a>-based <span class="tooltip">DHT <span class="tooltiptext">Distributed Hash Table</span></span> that can scale to tens of thousands of peers with logarithmic search complexity.</p>
+                            <p> Hivemind uses <a href=https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf target="_blank" rel="noopener noreferrer">Kademlia</a>-based DHT that can scale to tens of thousands of peers with logarithmic search complexity.</p>
                         </span>
                     </div>
                     <div style="width:100%; max-width: 385px; vertical-align: top; display: inline-block; margin-top: 0px; align:center;">
