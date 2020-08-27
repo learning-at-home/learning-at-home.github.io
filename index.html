@@ -185,7 +185,7 @@
                     <h1 class="faded title" style="margin-top:-3%;">
                         <p style="margin-top: 0px; margin-bottom:0px;">
                             <sup style="font-size: 18px">learning@home</sup>
-                            hivemind
+                            <span id="title_text">hivemind</span>
                             <sup style="font-size: 18px">v0.8&nbsp;pre&#8209;alpha&nbsp;&nbsp;&nbsp;</sup>
                         </p>
                         <p style="font-size: 18px; margin-top:0px; margin-bottom:0px;">train vast neural networks together</p>
@@ -250,7 +250,7 @@
                         </div>
                     </div>
 
-                    <p style="width: 100%; max-width: 900px; margin-top:16px; text-align: left">
+                    <p class="faded text" style="width: 100%; max-width: 900px; margin-top:16px; text-align: left">
                         That said, training large neural networks isn't cheap. The hardware used for the <a href="https://arxiv.org/abs/1909.08053" target="_blank" rel="noopener noreferrer">previous largest</a> language model costs over $25 million. A single training run for GPT-3 will set you back <a href="https://lambdalabs.com/blog/demystifying-gpt-3/" target="_blank" rel="noopener noreferrer">at least $4.6M</a> in cloud GPUs. As a result, researchers can't contribute to state-of-the-art deep learning models and practitioners can't build applications without <a href=https://blogs.microsoft.com/ai/openai-azure-supercomputer target="_blank" rel="noopener noreferrer">being supported</a> by a megacorporation. If&nbsp;we&nbsp;want the future of AI to be bright, it can't be private.
                     </p>
                   
@@ -370,7 +370,11 @@
 (function() {
   var content_element = document.getElementById("overlay");
   var canvas = document.querySelector('canvas');
-  var title_elem = document.getElementsByClassName("faded title")[0]
+  var title_elem = document.getElementsByClassName("faded title")[0];
+  var title_text = document.getElementById("title_text");
+  if (screen.width < 637)
+      title_text.innerHTML = "<br>hivemind<br>"
+    
   ctx = canvas.getContext('2d');
   if (!ctx)
       console.warn("Your browser does not support canvas, content may be broken :'(");
